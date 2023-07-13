@@ -6,20 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.ItemsModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const items_module_1 = require("./items/items.module");
 const mongoose_1 = require("@nestjs/mongoose");
-const keys_1 = require("./config/keys");
-let AppModule = exports.AppModule = class AppModule {
+const items_controller_1 = require("./items.controller");
+const items_service_1 = require("./items.service");
+const Item_schema_1 = require("./schemas/Item.schema");
+let ItemsModule = exports.ItemsModule = class ItemsModule {
 };
-exports.AppModule = AppModule = __decorate([
+exports.ItemsModule = ItemsModule = __decorate([
     (0, common_1.Module)({
-        imports: [items_module_1.ItemsModule, mongoose_1.MongooseModule.forRoot(keys_1.default.mongoURI)],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: 'Item', schema: Item_schema_1.ItemSchema }]),
+        ],
+        controllers: [items_controller_1.ItemsController],
+        providers: [items_service_1.ItemsService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], ItemsModule);
+//# sourceMappingURL=items.module.js.map
